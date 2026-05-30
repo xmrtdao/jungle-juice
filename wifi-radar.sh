@@ -105,11 +105,15 @@ while true; do
   fi
 
   # Validate
-  echo "$SCAN" | jq empty 2>/dev/null || {
-    echo "[$(date +%H:%M:%S)] [!] Invalid JSON from scan"
+  if ! echo "$SCAN" | jq -e '. | type == "array"' >/dev/null 2>&1; then
+    echo "[$(date +%H:%M:%S)] [!] Invalid scan data:"
+    echo "$SCAN" | head -5
+    echo ""
+    echo "    Make sure location permission is granted to Termux."
+    echo "    Settings -> Apps -> Termux -> Permissions -> Location = ON"
     sleep "$SCAN_RATE"
     continue
-  }
+  fi
 
   COUNT=$((COUNT + 1))
 
