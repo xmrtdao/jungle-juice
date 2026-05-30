@@ -158,28 +158,26 @@ section{padding:60px 20px}
   .stat .num{font-size:32px}
 }
 
-/* ── Wildlife (mobile-first) ── */
-.wildlife-section{background:linear-gradient(180deg,#0d1a12 0%,#14261b 50%,#0d1a12 100%)}
-.wildlife-header{text-align:center;margin-bottom:40px}
-.wildlife-header h2{font-size:26px;margin-bottom:10px}
-.wildlife-header p{font-size:14px;color:rgba(240,239,231,0.5);max-width:480px;margin:0 auto}
-.wildlife-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
-.wildlife-card{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:1;cursor:pointer}
-.wildlife-card.large{grid-column:span 2;grid-row:span 1}
-.wildlife-card img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s}
-.wildlife-card:hover img{transform:scale(1.08)}
-.wildlife-card .overlay{
-  position:absolute;inset:0;background:linear-gradient(0deg,rgba(13,26,18,0.7),transparent 60%);
-  display:flex;align-items:flex-end;padding:14px;opacity:0;transition:opacity 0.4s
+/* ── Featured Item ── */
+.menu-card.featured{
+  grid-column:1/-1;border-color:#ff6b35;background:linear-gradient(135deg,rgba(255,107,53,0.08),rgba(255,45,120,0.04));
+  position:relative;overflow:hidden
 }
-.wildlife-card:hover .overlay{opacity:1}
-.wildlife-card .overlay span{font-family:'Playfair Display',serif;font-size:15px;font-style:italic}
+.menu-card.featured::before{
+  content:'\26A1 LEADING ENERGY LINE';position:absolute;top:12px;left:12px;z-index:3;
+  background:#ff6b35;color:#0d1a12;padding:3px 10px;border-radius:4px;
+  font-size:9px;font-weight:700;letter-spacing:1px
+}
+.menu-card.featured .img-wrap{height:220px}
+.menu-card.featured .info h3{font-size:20px}
+.menu-card.featured .info h3 span{color:#ff6b35}
+.menu-card.featured .info .desc{font-size:13px}
+.menu-card.featured .info .price{font-size:20px;color:#ff2d78}
 @media(min-width:769px){
-  .wildlife-header h2{font-size:42px}
-  .wildlife-grid{grid-template-columns:repeat(4,1fr);gap:12px;grid-template-rows:auto auto}
-  .wildlife-card.large{grid-column:span 2;grid-row:span 2}
-  .wildlife-card .overlay{padding:20px}
-  .wildlife-card .overlay span{font-size:18px}
+  .menu-card.featured .img-wrap{height:280px}
+  .menu-card.featured .info h3{font-size:24px}
+  .menu-card.featured .info{padding:24px}
+  .menu-card.featured .info .desc{font-size:14px}
 }
 
 /* ── Menu (mobile-first) ── */
@@ -344,7 +342,6 @@ footer{padding:40px 20px 24px;background:linear-gradient(0deg,#060f0a,#0d1a12)}
   <ul class="nav-links" id="navLinks">
     <button class="close-btn" id="menuClose">&#10005;</button>
     <li><a href="#about" data-en="About" data-es="Nosotros">About</a></li>
-    <li><a href="#wildlife" data-en="Wildlife" data-es="Fauna">Wildlife</a></li>
     <li><a href="#menu" data-en="Menu" data-es="Men&uacute;">Menu</a></li>
     <li><a href="#gallery" data-en="Gallery" data-es="Galer&iacute;a">Gallery</a></li>
     <li><a href="#location" data-en="Location" data-es="Ubicaci&oacute;n">Location</a></li>
@@ -392,42 +389,6 @@ footer{padding:40px 20px 24px;background:linear-gradient(0deg,#060f0a,#0d1a12)}
   </div>
 </section>
 
-<!-- Wildlife -->
-<section id="wildlife" class="wildlife-section">
-  <div class="section-inner">
-    <div class="wildlife-header fade-in">
-      <div class="section-label" data-en="The Neighbors" data-es="Los Vecinos">The Neighbors</div>
-      <h2 data-en="Wildlife That Shares Our <em>Jungle</em>" data-es="Fauna Que Comparte Nuestra <em>Jungla</em>">Wildlife That Shares Our <em>Jungle</em></h2>
-      <p data-en="Pull up a seat &mdash; you might spot a toucan in the ceiba tree or a sloth making its slow commute overhead." data-es="Toma asiento &mdash; podr&iacute;as ver un tuc&aacute;n en el &aacute;rbol de ceiba o un perezoso haciendo su lenta caminata sobre tu cabeza.">Pull up a seat &mdash; you might spot a toucan in the ceiba tree or a sloth making its slow commute overhead.</p>
-    </div>
-    <div class="wildlife-grid stagger" id="wildlifeGrid">
-      <div class="wildlife-card large">
-        <img src="https://images.unsplash.com/photo-1590424740382-48e1030a18cc?w=600&q=80" alt="Toucan" loading="lazy">
-        <div class="overlay"><span>Toucan</span></div>
-      </div>
-      <div class="wildlife-card">
-        <img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=400&q=80" alt="Sloth" loading="lazy">
-        <div class="overlay"><span>Sloth / Perezoso</span></div>
-      </div>
-      <div class="wildlife-card">
-        <img src="https://images.unsplash.com/photo-1589212372455-1b58f83e4c35?w=400&q=80" alt="Red-eyed tree frog" loading="lazy">
-        <div class="overlay"><span>Red-Eyed Frog</span></div>
-      </div>
-      <div class="wildlife-card">
-        <img src="https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?w=400&q=80" alt="Capuchin monkey" loading="lazy">
-        <div class="overlay"><span>Capuchin Monkey</span></div>
-      </div>
-      <div class="wildlife-card">
-        <img src="https://images.unsplash.com/photo-1570042225831-d98fa7577f1e?w=400&q=80" alt="Jaguar" loading="lazy">
-        <div class="overlay"><span>Jaguar</span></div>
-      </div>
-      <div class="wildlife-card">
-        <img src="https://images.unsplash.com/photo-1555169062-013468b47731?w=400&q=80" alt="Hummingbird" loading="lazy">
-        <div class="overlay"><span>Hummingbird</span></div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- Menu -->
 <section id="menu">
@@ -438,6 +399,16 @@ footer{padding:40px 20px 24px;background:linear-gradient(0deg,#060f0a,#0d1a12)}
       <p data-en="Every smoothie made to order. Every ingredient kissed by Costa Rica's sun." data-es="Cada smoothie hecho al ordenar. Cada ingrediente besado por el sol de Costa Rica.">Every smoothie made to order. Every ingredient kissed by Costa Rica's sun.</p>
     </div>
     <div class="menu-grid stagger" id="menuGrid">
+      <!-- Raptor Energy (Lead Product Line) -->
+      <div class="menu-card featured">
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1757597738356-11d378869593?w=800&q=80" alt="Raptor Energy smoothie" loading="lazy"><span class="tag protein">&#9889; <span data-en="Energy + Protein" data-es="Energ&iacute;a + Prote&iacute;na">Energy + Protein</span></span></div>
+        <div class="info">
+          <h3>Raptor <span>Energy</span></h3>
+          <div class="desc lang-en">Our signature energy &amp; protein powerhouse &mdash; cold-brew coffee, banana, peanut butter, whey protein, cacao, maca root &amp; oat milk. Natural sustained energy from the jungle.</div>
+          <div class="desc lang-es" style="display:none">Nuestra poderosa combinaci&oacute;n de energ&iacute;a y prote&iacute;na &mdash; caf&eacute; cold brew, banano, mantequilla de man&iacute;, prote&iacute;na de suero, cacao, ra&iacute;z de maca y leche de avena. Energ&iacute;a natural sostenida de la selva.</div>
+          <div class="bottom"><span class="price">&cent;5,000 CRC</span><button class="order-btn" data-en="Order" data-es="Ordenar">Order</button></div>
+        </div>
+      </div>
       <!-- Mango Tango -->
       <div class="menu-card">
         <div class="img-wrap"><img src="https://images.unsplash.com/photo-1778449270554-3e5b17cfebc6?w=400&q=80" alt="Mango smoothie" loading="lazy"><span class="tag popular">&#127775; <span data-en="Popular" data-es="Popular">Popular</span></span></div>
