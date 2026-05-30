@@ -4,321 +4,351 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Jungle Juice — La Fortuna, Costa Rica</title>
-<meta name="description" content="Art-forward smoothie shop in the heart of La Fortuna, Costa Rica. Mango, papaya, coffee, protein & vegan smoothies made with tropical fruit.">
+<meta name="description" content="Art-forward smoothie shop in La Fortuna, Costa Rica. Mango, papaya, coffee, protein & vegan smoothies.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ── Reset & Base ── */
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior:smooth; }
-body {
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{
   font-family:'Inter',-apple-system,sans-serif;
-  background:#0d1a12;
-  color:#f0efe7;
-  line-height:1.6;
-  overflow-x:hidden;
+  background:#0d1a12;color:#f0efe7;line-height:1.6;overflow-x:hidden
 }
-::selection { background:#ff6b35; color:#0d1a12; }
-img { max-width:100%; height:auto; display:block; }
-a { color:inherit; text-decoration:none; }
+::selection{background:#ff6b35;color:#0d1a12}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:'Playfair Display',Georgia,serif;font-weight:400}
+.section-label{font-size:11px;text-transform:uppercase;letter-spacing:3px;color:#ff6b35;font-weight:600;margin-bottom:12px}
 
-/* ── Typography ── */
-h1,h2,h3,h4 { font-family:'Playfair Display',Georgia,serif; font-weight:400; }
-.section-label {
-  font-size:11px; text-transform:uppercase; letter-spacing:3px;
-  color:#ff6b35; font-weight:600; margin-bottom:12px;
+/* ── Navigation (mobile-first) ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  padding:16px 20px;display:flex;justify-content:space-between;align-items:center;
+  transition:background 0.4s,padding 0.4s
 }
-
-/* ── Navigation ── */
-nav {
-  position:fixed; top:0; left:0; right:0; z-index:1000;
-  padding:20px 40px;
-  display:flex; justify-content:space-between; align-items:center;
-  transition:all 0.4s;
+nav.scrolled{background:rgba(13,26,18,0.94);backdrop-filter:blur(16px);padding:12px 20px}
+nav .logo{display:flex;align-items:center;gap:10px}
+nav .logo svg{width:32px;height:32px;flex-shrink:0}
+nav .logo .brand-text{font-family:'Playfair Display',serif;font-size:20px;font-weight:600;line-height:1}
+nav .logo .brand-text span{color:#ff6b35}
+.nav-right{display:flex;align-items:center;gap:12px}
+.lang-btn{
+  background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);
+  color:#f0efe7;padding:5px 10px;border-radius:20px;font-size:11px;font-weight:600;
+  cursor:pointer;text-transform:uppercase;letter-spacing:1px;transition:all 0.3s;white-space:nowrap
 }
-nav.scrolled { background:rgba(13,26,18,0.92); backdrop-filter:blur(16px); padding:14px 40px; }
-nav .logo { font-family:'Playfair Display',serif; font-size:24px; font-weight:600; }
-nav .logo span { color:#ff6b35; }
-nav .nav-links { display:flex; gap:32px; list-style:none; }
-nav .nav-links a {
-  font-size:13px; font-weight:500; letter-spacing:1px; text-transform:uppercase;
-  transition:color 0.3s; position:relative;
+.lang-btn.active{background:#ff6b35;color:#0d1a12;border-color:#ff6b35}
+.lang-btn:hover{background:rgba(255,107,53,0.2);border-color:#ff6b35}
+.menu-btn{
+  background:none;border:none;color:#f0efe7;font-size:24px;cursor:pointer;
+  width:36px;height:36px;display:flex;align-items:center;justify-content:center
 }
-nav .nav-links a:hover { color:#ff6b35; }
-nav .menu-toggle { display:none; background:none; border:none; color:#f0efe7; font-size:28px; cursor:pointer; }
-@media(max-width:768px) {
-  nav { padding:16px 20px; }
-  nav .nav-links { display:none; position:fixed; top:0; left:0; right:0; bottom:0;
-    background:rgba(13,26,18,0.98); flex-direction:column; justify-content:center;
-    align-items:center; gap:24px; font-size:18px; }
-  nav .nav-links.open { display:flex; }
-  nav .menu-toggle { display:block; z-index:1001; }
+.nav-links{
+  display:none;position:fixed;top:0;left:0;right:0;bottom:0;
+  background:rgba(13,26,18,0.98);flex-direction:column;justify-content:center;
+  align-items:center;gap:28px;z-index:999;
+  list-style:none
 }
-
-/* ── Hero ── */
-.hero {
-  min-height:100vh; position:relative;
-  display:flex; align-items:center; justify-content:center;
-  overflow:hidden;
+.nav-links.open{display:flex}
+.nav-links a{font-size:18px;font-weight:500;letter-spacing:1px;text-transform:uppercase;transition:color 0.3s}
+.nav-links a:hover{color:#ff6b35}
+.nav-links .close-btn{
+  position:absolute;top:16px;right:20px;background:none;border:none;
+  color:#f0efe7;font-size:28px;cursor:pointer;width:36px;height:36px
 }
-.hero-bg {
-  position:absolute; inset:0;
-  background:url('https://images.unsplash.com/photo-1559314809-0d155014e29e?w=1600&q=80') center/cover;
-  transform:scale(1.1);
-  animation:heroZoom 20s ease-in-out infinite alternate;
-}
-@keyframes heroZoom { from{transform:scale(1.1)} to{transform:scale(1.2)} }
-.hero-overlay {
-  position:absolute; inset:0;
-  background:linear-gradient(180deg, rgba(13,26,18,0.3) 0%, rgba(13,26,18,0.85) 100%);
-}
-.hero-content {
-  position:relative; z-index:2; text-align:center; padding:20px;
-  max-width:800px;
-}
-.hero-content .tagline {
-  font-size:14px; text-transform:uppercase; letter-spacing:4px;
-  color:#4ade80; margin-bottom:20px; font-weight:500;
-}
-.hero-content h1 {
-  font-size:clamp(48px, 10vw, 96px); line-height:1.05; margin-bottom:16px;
-}
-.hero-content h1 .highlight {
-  background:linear-gradient(135deg, #ff6b35, #ff2d78, #facc15);
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-  background-clip:text;
-}
-.hero-content p {
-  font-size:clamp(16px, 2.5vw, 22px); color:rgba(240,239,231,0.75);
-  max-width:600px; margin:0 auto 40px; font-weight:300;
-}
-.hero-content .btn-group { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
-.btn {
-  display:inline-flex; align-items:center; gap:8px;
-  padding:14px 36px; border-radius:50px; font-size:14px; font-weight:600;
-  letter-spacing:1px; text-transform:uppercase; transition:all 0.3s; cursor:pointer; border:none;
-}
-.btn-primary { background:#ff6b35; color:#0d1a12; }
-.btn-primary:hover { background:#ff8250; transform:translateY(-2px); box-shadow:0 8px 30px rgba(255,107,53,0.35); }
-.btn-outline { border:2px solid rgba(240,239,231,0.3); color:#f0efe7; background:transparent; }
-.btn-outline:hover { border-color:#4ade80; color:#4ade80; transform:translateY(-2px); }
-
-/* ── Scroll indicator ── */
-.scroll-indicator {
-  position:absolute; bottom:40px; left:50%; transform:translateX(-50%);
-  z-index:2; display:flex; flex-direction:column; align-items:center; gap:8px;
-  animation:fadeInUp 1s ease 1.5s both;
-}
-.scroll-indicator span { font-size:10px; text-transform:uppercase; letter-spacing:2px; color:rgba(240,239,231,0.4); }
-.scroll-indicator .line { width:1px; height:40px; background:linear-gradient(180deg,rgba(240,239,231,0.4),transparent); }
-@keyframes fadeInUp { from{opacity:0;transform:translateX(-50%) translateY(20px)} to{opacity:1;transform:translateX(-50%) translateY(0)} }
-
-/* ── Sections ── */
-section { padding:100px 40px; }
-.section-inner { max-width:1200px; margin:0 auto; }
-@media(max-width:768px) { section { padding:60px 20px; } }
-
-/* ── About ── */
-.about-grid {
-  display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;
-}
-.about-image {
-  position:relative; border-radius:20px; overflow:hidden;
-  height:500px; background:url('https://images.unsplash.com/photo-1535884444-1e1c2a6ae8f2?w=800&q=80') center/cover;
-}
-.about-image::after {
-  content:''; position:absolute; inset:0;
-  background:linear-gradient(135deg, rgba(255,107,53,0.2), transparent);
-}
-.about-image .badge {
-  position:absolute; bottom:20px; left:20px; z-index:2;
-  background:rgba(13,26,18,0.8); backdrop-filter:blur(8px);
-  padding:12px 20px; border-radius:12px; font-size:12px;
-}
-.about-content h2 { font-size:clamp(32px,5vw,52px); margin-bottom:16px; }
-.about-content h2 em { font-style:italic; color:#4ade80; }
-.about-content p { font-size:16px; color:rgba(240,239,231,0.65); line-height:1.8; margin-bottom:20px; }
-.stats { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:32px; }
-.stat { text-align:center; padding:20px; background:rgba(255,255,255,0.04); border-radius:12px; border:1px solid rgba(255,255,255,0.06); }
-.stat .num { font-family:'Playfair Display',serif; font-size:32px; color:#ff6b35; }
-.stat .lbl { font-size:11px; text-transform:uppercase; letter-spacing:1px; color:rgba(240,239,231,0.4); margin-top:4px; }
-@media(max-width:768px) {
-  .about-grid { grid-template-columns:1fr; gap:30px; }
-  .about-image { height:300px; }
+@media(min-width:769px){
+  nav{padding:20px 40px}
+  nav.scrolled{padding:14px 40px}
+  nav .logo svg{width:36px;height:36px}
+  nav .logo .brand-text{font-size:24px}
+  .menu-btn{display:none}
+  .nav-right{gap:20px}
+  .lang-btn{padding:6px 14px;font-size:12px}
+  .nav-links{
+    display:flex;position:static;background:none;flex-direction:row;
+    gap:24px;justify-content:flex-end
+  }
+  .nav-links a{font-size:12px}
+  .nav-links .close-btn{display:none}
 }
 
-/* ── Wildlife Carousel ── */
-.wildlife-section { background:linear-gradient(180deg,#0d1a12 0%,#14261b 50%,#0d1a12 100%); }
-.wildlife-header { text-align:center; margin-bottom:60px; }
-.wildlife-header h2 { font-size:clamp(28px,4vw,44px); margin-bottom:12px; }
-.wildlife-header p { color:rgba(240,239,231,0.55); max-width:500px; margin:0 auto; }
-.wildlife-grid {
-  display:grid; grid-template-columns:repeat(4,1fr); gap:12px;
+/* ── Hero (mobile-first) ── */
+.hero{
+  min-height:100dvh;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden
 }
-.wildlife-card {
-  position:relative; border-radius:16px; overflow:hidden;
-  aspect-ratio:1; cursor:pointer; group;
+.hero-bg{
+  position:absolute;inset:0;
+  background:url('https://images.unsplash.com/photo-1778449270554-3e5b17cfebc6?w=1600&q=80') center/cover;
+  transform:scale(1.15);animation:heroZoom 25s ease-in-out infinite alternate
 }
-.wildlife-card.large { grid-column:span 2; grid-row:span 2; }
-.wildlife-card img { width:100%; height:100%; object-fit:cover; transition:transform 0.6s; }
-.wildlife-card:hover img { transform:scale(1.08); }
-.wildlife-card .overlay {
-  position:absolute; inset:0;
-  background:linear-gradient(0deg, rgba(13,26,18,0.7) 0%, transparent 60%);
-  display:flex; align-items:flex-end; padding:20px;
-  opacity:0; transition:opacity 0.4s;
+@keyframes heroZoom{from{transform:scale(1.15)}to{transform:scale(1.25)}}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(13,26,18,0.15)0%,rgba(13,26,18,0.88)100%)
 }
-.wildlife-card:hover .overlay { opacity:1; }
-.wildlife-card .overlay span { font-family:'Playfair Display',serif; font-size:18px; font-style:italic; }
-@media(max-width:768px) {
-  .wildlife-grid { grid-template-columns:repeat(2,1fr); }
-  .wildlife-card.large { grid-column:span 1; grid-row:span 1; }
+.hero-content{position:relative;z-index:2;text-align:center;padding:20px 24px;max-width:800px}
+.hero-content .tagline{font-size:12px;text-transform:uppercase;letter-spacing:4px;color:#4ade80;margin-bottom:16px;font-weight:500}
+.hero-content h1{font-size:42px;line-height:1.05;margin-bottom:12px}
+.hero-content h1 .highlight{
+  background:linear-gradient(135deg,#ff6b35,#ff2d78,#facc15);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text
+}
+.hero-content p{font-size:15px;color:rgba(240,239,231,0.7);max-width:500px;margin:0 auto 32px;font-weight:300}
+.hero-content .btn-group{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:6px;padding:12px 28px;border-radius:50px;
+  font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;
+  transition:all 0.3s;cursor:pointer;border:none
+}
+.btn-primary{background:#ff6b35;color:#0d1a12}
+.btn-primary:hover{background:#ff8250;transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,107,53,0.35)}
+.btn-outline{border:2px solid rgba(240,239,231,0.25);color:#f0efe7;background:transparent}
+.btn-outline:hover{border-color:#4ade80;color:#4ade80;transform:translateY(-2px)}
+.scroll-indicator{
+  position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:2;
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  animation:fadeInUp 1s ease 1.5s both
+}
+.scroll-indicator span{font-size:9px;text-transform:uppercase;letter-spacing:2px;color:rgba(240,239,231,0.3)}
+.scroll-indicator .line{width:1px;height:30px;background:linear-gradient(180deg,rgba(240,239,231,0.3),transparent)}
+@keyframes fadeInUp{from{opacity:0;transform:translateX(-50%) translateY(20px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+
+@media(min-width:769px){
+  .hero-content h1{font-size:80px}
+  .hero-content .tagline{font-size:14px}
+  .hero-content p{font-size:20px}
+  .btn{padding:14px 36px;font-size:14px}
+  .scroll-indicator{bottom:40px}
+  .scroll-indicator .line{height:40px}
 }
 
-/* ── Menu ── */
-.menu-header { text-align:center; margin-bottom:60px; }
-.menu-header h2 { font-size:clamp(28px,4vw,44px); margin-bottom:12px; }
-.menu-header h2 span { color:#ff6b35; }
-.menu-header p { color:rgba(240,239,231,0.55); max-width:500px; margin:0 auto; }
-.menu-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
-.menu-card {
-  background:rgba(255,255,255,0.03); border-radius:20px; overflow:hidden;
-  border:1px solid rgba(255,255,255,0.06); transition:all 0.4s;
-}
-.menu-card:hover { transform:translateY(-8px); border-color:rgba(255,107,53,0.3); box-shadow:0 20px 60px rgba(0,0,0,0.3); }
-.menu-card .img-wrap {
-  height:220px; overflow:hidden; position:relative;
-}
-.menu-card .img-wrap img { width:100%; height:100%; object-fit:cover; transition:transform 0.6s; }
-.menu-card:hover .img-wrap img { transform:scale(1.08); }
-.menu-card .img-wrap .tag {
-  position:absolute; top:12px; right:12px; z-index:2;
-  padding:4px 12px; border-radius:20px; font-size:10px; font-weight:600;
-  text-transform:uppercase; letter-spacing:1px;
-}
-.tag.popular { background:#ff6b35; color:#0d1a12; }
-.tag.vegan { background:#4ade80; color:#0d1a12; }
-.tag.protein { background:#60a5fa; color:#0d1a12; }
-.tag.coffee { background:#a78bfa; color:#0d1a12; }
-.menu-card .info { padding:20px; }
-.menu-card .info h3 { font-size:20px; margin-bottom:4px; }
-.menu-card .info .desc { font-size:13px; color:rgba(240,239,231,0.5); margin-bottom:12px; }
-.menu-card .info .bottom { display:flex; justify-content:space-between; align-items:center; }
-.menu-card .info .price { font-size:18px; font-weight:600; color:#ff6b35; }
-.menu-card .info .order-btn {
-  font-size:11px; text-transform:uppercase; letter-spacing:1px;
-  padding:8px 18px; border-radius:30px; border:1px solid rgba(255,107,53,0.3);
-  color:#ff6b35; background:transparent; cursor:pointer; transition:all 0.3s;
-}
-.menu-card .info .order-btn:hover { background:#ff6b35; color:#0d1a12; }
-@media(max-width:1024px) { .menu-grid { grid-template-columns:repeat(2,1fr); } }
-@media(max-width:768px) { .menu-grid { grid-template-columns:1fr; } }
+/* ── Sections (mobile-first) ── */
+section{padding:60px 20px}
+.section-inner{max-width:1200px;margin:0 auto}
+@media(min-width:769px){section{padding:100px 40px}}
 
-/* ── Gallery ── */
-.gallery-section { background:#0a1710; padding:100px 0; }
-.gallery-header { text-align:center; padding:0 40px; margin-bottom:60px; }
-.gallery-header h2 { font-size:clamp(28px,4vw,44px); margin-bottom:12px; }
-.gallery-scroll {
-  display:flex; gap:16px; overflow-x:auto; padding:0 40px 20px;
-  scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
+/* ── About (mobile-first) ── */
+.about-grid{display:grid;gap:30px}
+.about-image{position:relative;border-radius:16px;overflow:hidden;height:280px;
+  background:url('https://images.unsplash.com/photo-1535884444-1e1c2a6ae8f2?w=800&q=80') center/cover}
+.about-image::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,107,53,0.15),transparent)}
+.about-image .badge{
+  position:absolute;bottom:16px;left:16px;z-index:2;
+  background:rgba(13,26,18,0.8);backdrop-filter:blur(8px);
+  padding:10px 16px;border-radius:10px;font-size:11px
 }
-.gallery-scroll::-webkit-scrollbar { height:4px; }
-.gallery-scroll::-webkit-scrollbar-thumb { background:#ff6b35; border-radius:2px; }
-.gallery-scroll::-webkit-scrollbar-track { background:rgba(255,255,255,0.05); }
-.gallery-item {
-  flex:0 0 320px; height:400px; border-radius:16px; overflow:hidden;
-  position:relative; scroll-snap-align:start;
-}
-.gallery-item img { width:100%; height:100%; object-fit:cover; transition:transform 0.6s; }
-.gallery-item:hover img { transform:scale(1.08); }
-.gallery-item .cap {
-  position:absolute; bottom:0; left:0; right:0; padding:20px;
-  background:linear-gradient(0deg, rgba(13,26,18,0.8), transparent);
-  font-size:13px; color:rgba(240,239,231,0.7);
+.about-content h2{font-size:28px;margin-bottom:12px}
+.about-content h2 em{font-style:italic;color:#4ade80}
+.about-content p{font-size:14px;color:rgba(240,239,231,0.6);line-height:1.8;margin-bottom:16px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:24px}
+.stat{padding:16px 8px;background:rgba(255,255,255,0.03);border-radius:10px;border:1px solid rgba(255,255,255,0.05);text-align:center}
+.stat .num{font-family:'Playfair Display',serif;font-size:26px;color:#ff6b35}
+.stat .lbl{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:rgba(240,239,231,0.4);margin-top:4px}
+
+@media(min-width:769px){
+  .about-grid{grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+  .about-image{height:500px;border-radius:20px}
+  .about-image .badge{bottom:20px;left:20px;font-size:12px;padding:12px 20px;border-radius:12px}
+  .about-content h2{font-size:48px}
+  .about-content p{font-size:16px}
+  .stats{gap:16px}
+  .stat{padding:20px;border-radius:12px}
+  .stat .num{font-size:32px}
 }
 
-/* ── Location ── */
-.location-grid {
-  display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;
+/* ── Wildlife (mobile-first) ── */
+.wildlife-section{background:linear-gradient(180deg,#0d1a12 0%,#14261b 50%,#0d1a12 100%)}
+.wildlife-header{text-align:center;margin-bottom:40px}
+.wildlife-header h2{font-size:26px;margin-bottom:10px}
+.wildlife-header p{font-size:14px;color:rgba(240,239,231,0.5);max-width:480px;margin:0 auto}
+.wildlife-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.wildlife-card{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:1;cursor:pointer}
+.wildlife-card.large{grid-column:span 2;grid-row:span 1}
+.wildlife-card img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s}
+.wildlife-card:hover img{transform:scale(1.08)}
+.wildlife-card .overlay{
+  position:absolute;inset:0;background:linear-gradient(0deg,rgba(13,26,18,0.7),transparent 60%);
+  display:flex;align-items:flex-end;padding:14px;opacity:0;transition:opacity 0.4s
 }
-.location-image {
-  border-radius:20px; overflow:hidden; height:400px;
-  background:url('https://images.unsplash.com/photo-1589409514187-c21d14df0d04?w=800&q=80') center/cover;
-}
-.location-content h2 { font-size:clamp(28px,4vw,44px); margin-bottom:16px; }
-.location-content h2 em { font-style:italic; color:#4ade80; }
-.location-content p { color:rgba(240,239,231,0.65); margin-bottom:24px; }
-.location-detail { display:flex; gap:12px; margin-bottom:12px; align-items:flex-start; }
-.location-detail .icon { width:40px; height:40px; border-radius:50%; background:rgba(255,107,53,0.15);
-  display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:18px; }
-.location-detail .text { font-size:14px; }
-.location-detail .text strong { display:block; margin-bottom:2px; }
-.location-detail .text span { color:rgba(240,239,231,0.5); font-size:13px; }
-@media(max-width:768px) {
-  .location-grid { grid-template-columns:1fr; gap:30px; }
-  .location-image { height:250px; }
+.wildlife-card:hover .overlay{opacity:1}
+.wildlife-card .overlay span{font-family:'Playfair Display',serif;font-size:15px;font-style:italic}
+@media(min-width:769px){
+  .wildlife-header h2{font-size:42px}
+  .wildlife-grid{grid-template-columns:repeat(4,1fr);gap:12px;grid-template-rows:auto auto}
+  .wildlife-card.large{grid-column:span 2;grid-row:span 2}
+  .wildlife-card .overlay{padding:20px}
+  .wildlife-card .overlay span{font-size:18px}
 }
 
-/* ── Footer ── */
-footer {
-  padding:60px 40px 30px;
-  background:linear-gradient(0deg, #060f0a, #0d1a12);
+/* ── Menu (mobile-first) ── */
+.menu-header{text-align:center;margin-bottom:40px}
+.menu-header h2{font-size:26px;margin-bottom:10px}
+.menu-header h2 span{color:#ff6b35}
+.menu-header p{font-size:14px;color:rgba(240,239,231,0.5);max-width:480px;margin:0 auto}
+.menu-grid{display:grid;grid-template-columns:1fr;gap:16px}
+.menu-card{
+  background:rgba(255,255,255,0.03);border-radius:16px;overflow:hidden;
+  border:1px solid rgba(255,255,255,0.06);transition:all 0.4s;display:flex;flex-direction:column
 }
-.footer-grid {
-  max-width:1200px; margin:0 auto;
-  display:grid; grid-template-columns:2fr 1fr 1fr; gap:40px;
+.menu-card .img-wrap{height:180px;overflow:hidden;position:relative;flex-shrink:0}
+.menu-card .img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s}
+.menu-card:hover .img-wrap img{transform:scale(1.08)}
+.menu-card .img-wrap .tag{
+  position:absolute;top:10px;right:10px;z-index:2;
+  padding:3px 10px;border-radius:16px;font-size:9px;font-weight:600;
+  text-transform:uppercase;letter-spacing:1px
 }
-.footer-brand .logo { font-family:'Playfair Display',serif; font-size:28px; font-weight:600; margin-bottom:12px; }
-.footer-brand .logo span { color:#ff6b35; }
-.footer-brand p { color:rgba(240,239,231,0.45); font-size:13px; max-width:300px; }
-.footer-col h4 { font-size:11px; text-transform:uppercase; letter-spacing:2px; color:#ff6b35; margin-bottom:16px; font-weight:600; }
-.footer-col ul { list-style:none; }
-.footer-col ul li { margin-bottom:8px; }
-.footer-col ul a { font-size:13px; color:rgba(240,239,231,0.5); transition:color 0.3s; }
-.footer-col ul a:hover { color:#4ade80; }
-.footer-bottom {
-  max-width:1200px; margin:40px auto 0; padding-top:20px;
-  border-top:1px solid rgba(255,255,255,0.05);
-  display:flex; justify-content:space-between; align-items:center;
-  font-size:12px; color:rgba(240,239,231,0.3);
+.tag.popular{background:#ff6b35;color:#0d1a12}.tag.vegan{background:#4ade80;color:#0d1a12}
+.tag.protein{background:#60a5fa;color:#0d1a12}.tag.coffee{background:#a78bfa;color:#0d1a12}
+.menu-card .info{padding:16px;flex:1;display:flex;flex-direction:column}
+.menu-card .info h3{font-size:17px;margin-bottom:2px}
+.menu-card .info .desc{font-size:12px;color:rgba(240,239,231,0.5);margin-bottom:12px;flex:1}
+.menu-card .info .bottom{display:flex;justify-content:space-between;align-items:center}
+.menu-card .info .price{font-size:16px;font-weight:600;color:#ff6b35}
+.menu-card .info .order-btn{
+  font-size:10px;text-transform:uppercase;letter-spacing:1px;
+  padding:7px 16px;border-radius:24px;border:1px solid rgba(255,107,53,0.3);
+  color:#ff6b35;background:transparent;cursor:pointer;transition:all 0.3s
 }
-.footer-bottom .socials { display:flex; gap:16px; }
-.footer-bottom .socials a { font-size:18px; transition:color 0.3s; }
-.footer-bottom .socials a:hover { color:#ff6b35; }
-@media(max-width:768px) {
-  .footer-grid { grid-template-columns:1fr; gap:30px; }
-  .footer-bottom { flex-direction:column; gap:12px; text-align:center; }
+.menu-card .info .order-btn:hover{background:#ff6b35;color:#0d1a12}
+
+@media(min-width:600px){.menu-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1024px){.menu-grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:769px){
+  .menu-header h2{font-size:42px}
+  .menu-card .img-wrap{height:220px}
+  .menu-card .info{padding:20px}
+  .menu-card .info h3{font-size:20px}
+  .menu-card .info .desc{font-size:13px}
+  .menu-card .info .price{font-size:18px}
+}
+
+/* ── Gallery (mobile-first) ── */
+.gallery-section{background:#0a1710;padding:60px 0}
+.gallery-header{text-align:center;padding:0 20px;margin-bottom:40px}
+.gallery-header h2{font-size:26px;margin-bottom:10px}
+.gallery-scroll{
+  display:flex;gap:12px;overflow-x:auto;padding:0 20px 16px;
+  scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch
+}
+.gallery-scroll::-webkit-scrollbar{height:3px}
+.gallery-scroll::-webkit-scrollbar-thumb{background:#ff6b35;border-radius:2px}
+.gallery-scroll::-webkit-scrollbar-track{background:rgba(255,255,255,0.04)}
+.gallery-item{flex:0 0 260px;height:300px;border-radius:12px;overflow:hidden;position:relative;scroll-snap-align:start}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s}
+.gallery-item:hover img{transform:scale(1.08)}
+.gallery-item .cap{
+  position:absolute;bottom:0;left:0;right:0;padding:16px;
+  background:linear-gradient(0deg,rgba(13,26,18,0.8),transparent);
+  font-size:12px;color:rgba(240,239,231,0.6)
+}
+@media(min-width:769px){
+  .gallery-header h2{font-size:42px}
+  .gallery-header{padding:0 40px}
+  .gallery-scroll{padding:0 40px 20px;gap:16px}
+  .gallery-item{flex:0 0 320px;height:400px}
+}
+
+/* ── Location (mobile-first) ── */
+.location-grid{display:grid;gap:30px}
+.location-image{
+  border-radius:16px;overflow:hidden;height:240px;
+  background:url('https://images.unsplash.com/photo-1589409514187-c21d14df0d04?w=800&q=80') center/cover
+}
+.location-content h2{font-size:26px;margin-bottom:12px}
+.location-content h2 em{font-style:italic;color:#4ade80}
+.location-content p{font-size:14px;color:rgba(240,239,231,0.6);margin-bottom:20px}
+.location-detail{display:flex;gap:10px;margin-bottom:10px;align-items:flex-start}
+.location-detail .icon{width:36px;height:36px;border-radius:50%;background:rgba(255,107,53,0.12);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px}
+.location-detail .text{font-size:13px}
+.location-detail .text strong{display:block;margin-bottom:1px}
+.location-detail .text span{color:rgba(240,239,231,0.45);font-size:12px}
+@media(min-width:769px){
+  .location-grid{grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+  .location-image{height:400px;border-radius:20px}
+  .location-content h2{font-size:42px}
+  .location-content p{font-size:16px}
+  .location-detail .text{font-size:14px}
+}
+
+/* ── Footer (mobile-first) ── */
+footer{padding:40px 20px 24px;background:linear-gradient(0deg,#060f0a,#0d1a12)}
+.footer-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:28px}
+.footer-brand .logo{font-family:'Playfair Display',serif;font-size:24px;font-weight:600;margin-bottom:8px}
+.footer-brand .logo span{color:#ff6b35}
+.footer-brand p{color:rgba(240,239,231,0.4);font-size:12px;max-width:280px}
+.footer-col h4{font-size:10px;text-transform:uppercase;letter-spacing:2px;color:#ff6b35;margin-bottom:12px;font-weight:600}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:6px}
+.footer-col ul a{font-size:12px;color:rgba(240,239,231,0.45);transition:color 0.3s}
+.footer-col ul a:hover{color:#4ade80}
+.footer-bottom{
+  max-width:1200px;margin:28px auto 0;padding-top:16px;
+  border-top:1px solid rgba(255,255,255,0.04);
+  display:flex;flex-direction:column;gap:10px;align-items:center;
+  font-size:11px;color:rgba(240,239,231,0.25);text-align:center
+}
+.footer-bottom .socials{display:flex;gap:14px}
+.footer-bottom .socials a{font-size:16px;transition:color 0.3s}
+.footer-bottom .socials a:hover{color:#ff6b35}
+@media(min-width:769px){
+  footer{padding:60px 40px 30px}
+  .footer-grid{grid-template-columns:2fr 1fr 1fr;gap:40px}
+  .footer-brand .logo{font-size:28px}
+  .footer-brand p{font-size:13px}
+  .footer-bottom{flex-direction:row;justify-content:space-between;text-align:left}
 }
 
 /* ── Animations ── */
-.fade-in { opacity:0; transform:translateY(30px); transition:all 0.8s ease; }
-.fade-in.visible { opacity:1; transform:translateY(0); }
-.fade-in-left { opacity:0; transform:translateX(-30px); transition:all 0.8s ease; }
-.fade-in-left.visible { opacity:1; transform:translateX(0); }
-.fade-in-right { opacity:0; transform:translateX(30px); transition:all 0.8s ease; }
-.fade-in-right.visible { opacity:1; transform:translateX(0); }
-.stagger > * { opacity:0; transform:translateY(20px); transition:all 0.5s ease; }
-.stagger.visible > *:nth-child(1) { transition-delay:0s; opacity:1; transform:translateY(0); }
-.stagger.visible > *:nth-child(2) { transition-delay:0.1s; opacity:1; transform:translateY(0); }
-.stagger.visible > *:nth-child(3) { transition-delay:0.2s; opacity:1; transform:translateY(0); }
-.stagger.visible > *:nth-child(4) { transition-delay:0.3s; opacity:1; transform:translateY(0); }
-.stagger.visible > *:nth-child(5) { transition-delay:0.4s; opacity:1; transform:translateY(0); }
-.stagger.visible > *:nth-child(6) { transition-delay:0.5s; opacity:1; transform:translateY(0); }
+.fade-in{opacity:0;transform:translateY(24px);transition:all 0.7s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+.fade-in-left{opacity:0;transform:translateX(-20px);transition:all 0.7s ease}
+.fade-in-left.visible{opacity:1;transform:translateX(0)}
+.fade-in-right{opacity:0;transform:translateX(20px);transition:all 0.7s ease}
+.fade-in-right.visible{opacity:1;transform:translateX(0)}
+.stagger>*{opacity:0;transform:translateY(16px);transition:all 0.5s ease}
+.stagger.visible>*:nth-child(1){transition-delay:0s;opacity:1;transform:translateY(0)}
+.stagger.visible>*:nth-child(2){transition-delay:0.08s;opacity:1;transform:translateY(0)}
+.stagger.visible>*:nth-child(3){transition-delay:0.16s;opacity:1;transform:translateY(0)}
+.stagger.visible>*:nth-child(4){transition-delay:0.24s;opacity:1;transform:translateY(0)}
+.stagger.visible>*:nth-child(5){transition-delay:0.32s;opacity:1;transform:translateY(0)}
+.stagger.visible>*:nth-child(6){transition-delay:0.40s;opacity:1;transform:translateY(0)}
+.stagger.visible>*:nth-child(7){transition-delay:0.48s;opacity:1;transform:translateY(0)}
+.stagger.visible>*:nth-child(8){transition-delay:0.56s;opacity:1;transform:translateY(0)}
+.stagger.visible>*:nth-child(9){transition-delay:0.64s;opacity:1;transform:translateY(0)}
 </style>
 </head>
 <body>
 
 <!-- Navigation -->
 <nav id="navbar">
-  <div class="logo">Jungle <span>Juice</span></div>
+  <div class="logo">
+    <svg viewBox="0 0 36 36" fill="none">
+      <circle cx="18" cy="18" r="17" fill="#1a3a2a" stroke="#ff6b35" stroke-width="1.5"/>
+      <path d="M12 20c2-3 4-5 6-5s4 2 6 5c2 3-2 7-6 7s-8-4-6-7z" fill="#ff6b35" opacity="0.9"/>
+      <path d="M14 19c1-2 2.5-3 4-3s3 1 4 3" stroke="#4ade80" stroke-width="1.2" fill="none"/>
+      <circle cx="16" cy="13" r="1.5" fill="#facc15"/>
+      <circle cx="21" cy="12" r="1" fill="#ff2d78"/>
+      <path d="M10 24c4-2 8-3 12-3s6 2 6 3" stroke="rgba(255,255,255,0.15)" stroke-width="0.8" fill="none" stroke-dasharray="2 2"/>
+    </svg>
+    <span class="brand-text">Jungle <span>Juice</span></span>
+  </div>
+  <div class="nav-right">
+    <button class="lang-btn active" id="langEn" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" id="langEs" onclick="setLang('es')">ES</button>
+    <button class="menu-btn" id="menuOpen" aria-label="Menu">&#9776;</button>
+  </div>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#about">About</a></li>
-    <li><a href="#wildlife">Wildlife</a></li>
-    <li><a href="#menu">Menu</a></li>
-    <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#location">Location</a></li>
+    <button class="close-btn" id="menuClose">&#10005;</button>
+    <li><a href="#about" data-en="About" data-es="Nosotros">About</a></li>
+    <li><a href="#wildlife" data-en="Wildlife" data-es="Fauna">Wildlife</a></li>
+    <li><a href="#menu" data-en="Menu" data-es="Men&uacute;">Menu</a></li>
+    <li><a href="#gallery" data-en="Gallery" data-es="Galer&iacute;a">Gallery</a></li>
+    <li><a href="#location" data-en="Location" data-es="Ubicaci&oacute;n">Location</a></li>
   </ul>
-  <button class="menu-toggle" id="menuToggle" aria-label="Menu">&#9776;</button>
 </nav>
 
 <!-- Hero -->
@@ -326,16 +356,16 @@ footer {
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="tagline">La Fortuna, Costa Rica</div>
-    <h1>Pure <span class="highlight">Jungle</span><br>in Every Sip</h1>
-    <p>Hand-crafted smoothies from the heart of the rainforest. Mango, papaya, coffee, and wild flavors born from volcanic soil.</p>
+    <div class="tagline" data-en="La Fortuna, Costa Rica" data-es="La Fortuna, Costa Rica">La Fortuna, Costa Rica</div>
+    <h1><span data-en="Pure" data-es="Puro">Pure</span> <span class="highlight" data-en="Jungle" data-es="Jungla">Jungle</span><br><span data-en="in Every Sip" data-es="en Cada Sorbo">in Every Sip</span></h1>
+    <p data-en="Hand-crafted smoothies from the heart of the rainforest. Mango, papaya, coffee, and wild flavors born from volcanic soil." data-es="Smoothies artesanales desde el coraz&oacute;n de la selva tropical. Mango, papaya, caf&eacute; y sabores salvajes nacidos del suelo volc&aacute;nico.">Hand-crafted smoothies from the heart of the rainforest. Mango, papaya, coffee, and wild flavors born from volcanic soil.</p>
     <div class="btn-group">
-      <a href="#menu" class="btn btn-primary">&#9758; Explore the Menu</a>
-      <a href="#location" class="btn btn-outline">Find Us</a>
+      <a href="#menu" class="btn btn-primary" data-en="&#9758; Explore the Menu" data-es="&#9758; Ver Men&uacute;">&#9758; Explore the Menu</a>
+      <a href="#location" class="btn btn-outline" data-en="Find Us" data-es="Encu&eacute;ntranos">Find Us</a>
     </div>
   </div>
   <div class="scroll-indicator">
-    <span>Scroll</span>
+    <span data-en="Scroll" data-es="Desplazar">Scroll</span>
     <div class="line"></div>
   </div>
 </section>
@@ -344,17 +374,19 @@ footer {
 <section id="about">
   <div class="section-inner about-grid">
     <div class="about-image fade-in-left">
-      <div class="badge">&#127754; Since 2024</div>
+      <div class="badge" data-en="&#127754; Since 2024" data-es="&#127754; Desde 2024">&#127754; Since 2024</div>
     </div>
     <div class="about-content fade-in-right">
-      <div class="section-label">Our Story</div>
-      <h2>Born from the <em>Rainforest</em></h2>
-      <p>Nestled at the base of Volc&aacute;n Arenal, Jungle Juice is a love letter to Costa Rica's wild abundance. Every smoothie starts with fruit picked at sunrise from the fertile slopes surrounding La Fortuna &mdash; mangoes blushed with volcanic minerals, papayas sweetened by mountain mist, and coffee grown in the shade of ancient trees.</p>
-      <p>We believe the best things in life are uncomplicated. No powders, no shortcuts. Just the pure, vibrant taste of the jungle, blended into every cup.</p>
+      <div class="section-label" data-en="Our Story" data-es="Nuestra Historia">Our Story</div>
+      <h2 data-en="Born from the <em>Rainforest</em>" data-es="Nacido de la <em>Selva</em>">Born from the <em>Rainforest</em></h2>
+      <p class="lang-en">Nestled at the base of Volc&aacute;n Arenal, Jungle Juice is a love letter to Costa Rica's wild abundance. Every smoothie starts with fruit picked at sunrise from the fertile slopes surrounding La Fortuna &mdash; mangoes blushed with volcanic minerals, papayas sweetened by mountain mist, and coffee grown in the shade of ancient trees.</p>
+      <p class="lang-es" style="display:none">Anidado en la base del Volc&aacute;n Arenal, Jungle Juice es una carta de amor a la abundancia salvaje de Costa Rica. Cada smoothie comienza con fruta recogida al amanecer en las faldas f&eacute;rtiles que rodean La Fortuna &mdash; mangos ruborizados con minerales volc&aacute;nicos, papayas endulzadas por la niebla de la monta&ntilde;a y caf&eacute; cultivado a la sombra de &aacute;rboles ancestrales.</p>
+      <p class="lang-en">We believe the best things in life are uncomplicated. No powders, no shortcuts. Just the pure, vibrant taste of the jungle, blended into every cup.</p>
+      <p class="lang-es" style="display:none">Creemos que las mejores cosas de la vida son simples. Sin polvos, sin atajos. Solo el sabor puro y vibrante de la selva, mezclado en cada vaso.</p>
       <div class="stats">
-        <div class="stat"><div class="num">100%</div><div class="lbl">Natural</div></div>
-        <div class="stat"><div class="num">12+</div><div class="lbl">Wild Flavors</div></div>
-        <div class="stat"><div class="num">&#8734;</div><div class="lbl">Good Vibes</div></div>
+        <div class="stat"><div class="num">100%</div><div class="lbl" data-en="Natural" data-es="Natural">Natural</div></div>
+        <div class="stat"><div class="num">12+</div><div class="lbl" data-en="Wild Flavors" data-es="Sabores Salvajes">Wild Flavors</div></div>
+        <div class="stat"><div class="num">&#8734;</div><div class="lbl" data-en="Good Vibes" data-es="Buenas Vibras">Good Vibes</div></div>
       </div>
     </div>
   </div>
@@ -364,29 +396,29 @@ footer {
 <section id="wildlife" class="wildlife-section">
   <div class="section-inner">
     <div class="wildlife-header fade-in">
-      <div class="section-label">The Neighbors</div>
-      <h2>Wildlife That Shares Our <em>Jungle</em></h2>
-      <p>Pull up a seat &mdash; you might spot a toucan in the ceiba tree or a sloth making its slow commute overhead.</p>
+      <div class="section-label" data-en="The Neighbors" data-es="Los Vecinos">The Neighbors</div>
+      <h2 data-en="Wildlife That Shares Our <em>Jungle</em>" data-es="Fauna Que Comparte Nuestra <em>Jungla</em>">Wildlife That Shares Our <em>Jungle</em></h2>
+      <p data-en="Pull up a seat &mdash; you might spot a toucan in the ceiba tree or a sloth making its slow commute overhead." data-es="Toma asiento &mdash; podr&iacute;as ver un tuc&aacute;n en el &aacute;rbol de ceiba o un perezoso haciendo su lenta caminata sobre tu cabeza.">Pull up a seat &mdash; you might spot a toucan in the ceiba tree or a sloth making its slow commute overhead.</p>
     </div>
     <div class="wildlife-grid stagger" id="wildlifeGrid">
       <div class="wildlife-card large">
-        <img src="https://images.unsplash.com/photo-1590424740382-48e1030a18cc?w=600&q=80" alt="Toucan in Costa Rica rainforest" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1590424740382-48e1030a18cc?w=600&q=80" alt="Toucan" loading="lazy">
         <div class="overlay"><span>Toucan</span></div>
       </div>
       <div class="wildlife-card">
-        <img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=400&q=80" alt="Sloth hanging in tree" loading="lazy">
-        <div class="overlay"><span>Sloth</span></div>
+        <img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=400&q=80" alt="Sloth" loading="lazy">
+        <div class="overlay"><span>Sloth / Perezoso</span></div>
       </div>
       <div class="wildlife-card">
         <img src="https://images.unsplash.com/photo-1589212372455-1b58f83e4c35?w=400&q=80" alt="Red-eyed tree frog" loading="lazy">
         <div class="overlay"><span>Red-Eyed Frog</span></div>
       </div>
       <div class="wildlife-card">
-        <img src="https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?w=400&q=80" alt="White-faced capuchin monkey" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?w=400&q=80" alt="Capuchin monkey" loading="lazy">
         <div class="overlay"><span>Capuchin Monkey</span></div>
       </div>
       <div class="wildlife-card">
-        <img src="https://images.unsplash.com/photo-1570042225831-d98fa7577f1e?w=400&q=80" alt="Jaguar in jungle" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1570042225831-d98fa7577f1e?w=400&q=80" alt="Jaguar" loading="lazy">
         <div class="overlay"><span>Jaguar</span></div>
       </div>
       <div class="wildlife-card">
@@ -401,108 +433,99 @@ footer {
 <section id="menu">
   <div class="section-inner">
     <div class="menu-header fade-in">
-      <div class="section-label">The Menu</div>
-      <h2>Flavors of the <span>Jungle</span></h2>
-      <p>Every smoothie made to order. Every ingredient kissed by Costa Rica's sun.</p>
+      <div class="section-label" data-en="The Menu" data-es="El Men&uacute;">The Menu</div>
+      <h2><span data-en="Flavors of the" data-es="Sabores de la">Flavors of the</span> <span>Jungle</span></h2>
+      <p data-en="Every smoothie made to order. Every ingredient kissed by Costa Rica's sun." data-es="Cada smoothie hecho al ordenar. Cada ingrediente besado por el sol de Costa Rica.">Every smoothie made to order. Every ingredient kissed by Costa Rica's sun.</p>
     </div>
     <div class="menu-grid stagger" id="menuGrid">
+      <!-- Mango Tango -->
       <div class="menu-card">
-        <div class="img-wrap">
-          <img src="https://images.unsplash.com/photo-1505252585461-04db1eb84625?w=400&q=80" alt="Mango smoothie" loading="lazy">
-          <span class="tag popular">&#127775; Popular</span>
-        </div>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1778449270554-3e5b17cfebc6?w=400&q=80" alt="Mango smoothie" loading="lazy"><span class="tag popular">&#127775; <span data-en="Popular" data-es="Popular">Popular</span></span></div>
         <div class="info">
           <h3>Mango Tango</h3>
-          <div class="desc">Fresh Ataulfo mango, coconut milk, lime & a whisper of ginger</div>
-          <div class="bottom"><span class="price">&cent;3,500 CRC</span><button class="order-btn">Order</button></div>
+          <div class="desc lang-en">Fresh Ataulfo mango, coconut milk, lime &amp; a whisper of ginger</div>
+          <div class="desc lang-es" style="display:none">Mango Ataulfo fresco, leche de coco, lima y un toque de jengibre</div>
+          <div class="bottom"><span class="price">&cent;3,500 CRC</span><button class="order-btn" data-en="Order" data-es="Ordenar">Order</button></div>
         </div>
       </div>
+      <!-- Volcan Brew -->
       <div class="menu-card">
-        <div class="img-wrap">
-          <img src="https://images.unsplash.com/photo-1577805947697-89e18249d767?w=400&q=80" alt="Coffee smoothie" loading="lazy">
-          <span class="tag coffee">&#9749; Coffee</span>
-        </div>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1751614813119-2f69f248caa0?w=400&q=80" alt="Coffee smoothie" loading="lazy"><span class="tag coffee">&#9749; <span data-en="Coffee" data-es="Caf&eacute;">Coffee</span></span></div>
         <div class="info">
           <h3>Volc&aacute;n Brew</h3>
-          <div class="desc">Cold-brewed Arenal coffee, banana, cacao nibs & oat milk</div>
-          <div class="bottom"><span class="price">&cent;4,000 CRC</span><button class="order-btn">Order</button></div>
+          <div class="desc lang-en">Cold-brewed Arenal coffee, banana, cacao nibs &amp; oat milk</div>
+          <div class="desc lang-es" style="display:none">Caf&eacute; Arenal cold brew, banano, nibs de cacao y leche de avena</div>
+          <div class="bottom"><span class="price">&cent;4,000 CRC</span><button class="order-btn" data-en="Order" data-es="Ordenar">Order</button></div>
         </div>
       </div>
+      <!-- Rainforest Green -->
       <div class="menu-card">
-        <div class="img-wrap">
-          <img src="https://images.unsplash.com/photo-1623065422902-30a2d299bbe4?w=400&q=80" alt="Green smoothie vegan" loading="lazy">
-          <span class="tag vegan">Vegan</span>
-        </div>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1768723228817-7902ab347f5d?w=400&q=80" alt="Green smoothie" loading="lazy"><span class="tag vegan">Vegan</span></div>
         <div class="info">
-          <h3>Rainforest Green</h3>
-          <div class="desc">Spinach, pineapple, celery, green apple & spirulina</div>
-          <div class="bottom"><span class="price">&cent;3,800 CRC</span><button class="order-btn">Order</button></div>
+          <h3 data-en="Rainforest Green" data-es="Selva Verde">Rainforest Green</h3>
+          <div class="desc lang-en">Spinach, pineapple, celery, green apple &amp; spirulina</div>
+          <div class="desc lang-es" style="display:none">Espinaca, pi&ntilde;a, apio, manzana verde y espirulina</div>
+          <div class="bottom"><span class="price">&cent;3,800 CRC</span><button class="order-btn" data-en="Order" data-es="Ordenar">Order</button></div>
         </div>
       </div>
+      <!-- Papaya Sunrise -->
       <div class="menu-card">
-        <div class="img-wrap">
-          <img src="https://images.unsplash.com/photo-1546039907-7fa05f864c02?w=400&q=80" alt="Strawberry smoothie" loading="lazy">
-          <span class="tag popular">&#127775; Popular</span>
-        </div>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1633108787619-9455a0ca4522?w=400&q=80" alt="Papaya smoothie" loading="lazy"><span class="tag popular">&#127775; <span data-en="Popular" data-es="Popular">Popular</span></span></div>
         <div class="info">
           <h3>Papaya Sunrise</h3>
-          <div class="desc">Sun-ripened papaya, passionfruit, orange & a hint of vanilla</div>
-          <div class="bottom"><span class="price">&cent;3,500 CRC</span><button class="order-btn">Order</button></div>
+          <div class="desc lang-en">Sun-ripened papaya, passionfruit, orange &amp; a hint of vanilla</div>
+          <div class="desc lang-es" style="display:none">Papaya madurada al sol, maracuy&aacute;, naranja y un toque de vainilla</div>
+          <div class="bottom"><span class="price">&cent;3,500 CRC</span><button class="order-btn" data-en="Order" data-es="Ordenar">Order</button></div>
         </div>
       </div>
+      <!-- Jungle Fuel -->
       <div class="menu-card">
-        <div class="img-wrap">
-          <img src="https://images.unsplash.com/photo-1628891435222-065925dcb365?w=400&q=80" alt="Protein smoothie" loading="lazy">
-          <span class="tag protein">Protein</span>
-        </div>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1757597738356-11d378869593?w=400&q=80" alt="Protein smoothie" loading="lazy"><span class="tag protein">Protein</span></div>
         <div class="info">
-          <h3>Jungle Fuel</h3>
-          <div class="desc">Banana, peanut butter, whey protein, cacao & almond milk</div>
-          <div class="bottom"><span class="price">&cent;4,500 CRC</span><button class="order-btn">Order</button></div>
+          <h3 data-en="Jungle Fuel" data-es="Combustible Selv&aacute;tico">Jungle Fuel</h3>
+          <div class="desc lang-en">Banana, peanut butter, whey protein, cacao &amp; almond milk</div>
+          <div class="desc lang-es" style="display:none">Banano, mantequilla de man&iacute;, prote&iacute;na de suero, cacao y leche de almendras</div>
+          <div class="bottom"><span class="price">&cent;4,500 CRC</span><button class="order-btn" data-en="Order" data-es="Ordenar">Order</button></div>
         </div>
       </div>
+      <!-- Dragon's Kiss -->
       <div class="menu-card">
-        <div class="img-wrap">
-          <img src="https://images.unsplash.com/photo-1553530666-ba11a4e52c12?w=400&q=80" alt="Pitaya dragon fruit smoothie" loading="lazy">
-          <span class="tag vegan">Vegan</span>
-        </div>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1504855328839-2f4baf9e0fd7?w=400&q=80" alt="Pitaya smoothie bowl" loading="lazy"><span class="tag vegan">Vegan</span></div>
         <div class="info">
-          <h3>Dragon's Kiss</h3>
-          <div class="desc">Pitaya (dragon fruit), coconut cream, berries & agave</div>
-          <div class="bottom"><span class="price">&cent;4,200 CRC</span><button class="order-btn">Order</button></div>
+          <h3 data-en="Dragon's Kiss" data-es="Beso de Drag&oacute;n">Dragon's Kiss</h3>
+          <div class="desc lang-en">Pitaya (dragon fruit), coconut cream, berries &amp; agave</div>
+          <div class="desc lang-es" style="display:none">Pitaya (fruta del drag&oacute;n), crema de coco, bayas y agave</div>
+          <div class="bottom"><span class="price">&cent;4,200 CRC</span><button class="order-btn" data-en="Order" data-es="Ordenar">Order</button></div>
         </div>
       </div>
+      <!-- Cacao Loco -->
       <div class="menu-card">
-        <div class="img-wrap">
-          <img src="https://images.unsplash.com/photo-1550304943-4f24f54ddde9?w=400&q=80" alt="Chocolate smoothie" loading="lazy">
-          <span class="tag protein">Protein</span>
-        </div>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1565848920056-906a21da8c70?w=400&q=80" alt="Cacao smoothie" loading="lazy"><span class="tag protein">Protein</span></div>
         <div class="info">
           <h3>Cacao Loco</h3>
-          <div class="desc">Raw Costa Rican cacao, almond butter, dates & hemp seeds</div>
-          <div class="bottom"><span class="price">&cent;4,000 CRC</span><button class="order-btn">Order</button></div>
+          <div class="desc lang-en">Raw Costa Rican cacao, almond butter, dates &amp; hemp seeds</div>
+          <div class="desc lang-es" style="display:none">Cacao crudo costarricense, mantequilla de almendras, d&aacute;tiles y semillas de c&aacute;&ntilde;amo</div>
+          <div class="bottom"><span class="price">&cent;4,000 CRC</span><button class="order-btn" data-en="Order" data-es="Ordenar">Order</button></div>
         </div>
       </div>
+      <!-- Blue Howler -->
       <div class="menu-card">
-        <div class="img-wrap">
-          <img src="https://images.unsplash.com/photo-1563227812-0ea4c22e6cc8?w=400&q=80" alt="Blueberry smoothie bowl" loading="lazy">
-          <span class="tag popular">&#127775; Popular</span>
-        </div>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1676300186581-6dbe4c15adb3?w=400&q=80" alt="Blueberry smoothie bowl" loading="lazy"><span class="tag popular">&#127775; <span data-en="Popular" data-es="Popular">Popular</span></span></div>
         <div class="info">
-          <h3>Blue Howler</h3>
-          <div class="desc">Blueberry, banana, acai, granola & a crown of fresh fruit</div>
-          <div class="bottom"><span class="price">&cent;4,500 CRC</span><button class="order-btn">Order</button></div>
+          <h3 data-en="Blue Howler" data-es="Aullido Azul">Blue Howler</h3>
+          <div class="desc lang-en">Blueberry, banana, acai, granola &amp; a crown of fresh fruit</div>
+          <div class="desc lang-es" style="display:none">Ar&aacute;ndano, banano, aca&iacute;, granola y una corona de fruta fresca</div>
+          <div class="bottom"><span class="price">&cent;4,500 CRC</span><button class="order-btn" data-en="Order" data-es="Ordenar">Order</button></div>
         </div>
       </div>
+      <!-- Pura Vida -->
       <div class="menu-card">
-        <div class="img-wrap">
-          <img src="https://images.unsplash.com/photo-1590301157890-4810ed352733?w=400&q=80" alt="Coconut water smoothie" loading="lazy">
-          <span class="tag vegan">Vegan</span>
-        </div>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1752805930858-9e2a526c4c49?w=400&q=80" alt="Coconut green smoothie" loading="lazy"><span class="tag vegan">Vegan</span></div>
         <div class="info">
           <h3>Pura Vida</h3>
-          <div class="desc">Young coconut water, pineapple, mint & chia seeds</div>
-          <div class="bottom"><span class="price">&cent;3,200 CRC</span><button class="order-btn">Order</button></div>
+          <div class="desc lang-en">Young coconut water, pineapple, mint &amp; chia seeds</div>
+          <div class="desc lang-es" style="display:none">Agua de coco joven, pi&ntilde;a, menta y semillas de ch&iacute;a</div>
+          <div class="bottom"><span class="price">&cent;3,200 CRC</span><button class="order-btn" data-en="Order" data-es="Ordenar">Order</button></div>
         </div>
       </div>
     </div>
@@ -512,18 +535,18 @@ footer {
 <!-- Gallery -->
 <section id="gallery" class="gallery-section">
   <div class="gallery-header fade-in">
-    <div class="section-label">Visual Stories</div>
-    <h2>Costa Rica Through Our <em>Lens</em></h2>
+    <div class="section-label" data-en="Visual Stories" data-es="Historias Visuales">Visual Stories</div>
+    <h2 data-en="Costa Rica Through Our <em>Lens</em>" data-es="Costa Rica a Trav&eacute;s de Nuestro <em>Lente</em>">Costa Rica Through Our <em>Lens</em></h2>
   </div>
   <div class="gallery-scroll" id="galleryScroll">
-    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=400&q=80" alt="Arenal Volcano" loading="lazy"><div class="cap">Volc&aacute;n Arenal at dawn</div></div>
-    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1589556228980-dc4edf5d1dc2?w=400&q=80" alt="La Fortuna waterfall" loading="lazy"><div class="cap">La Fortuna Waterfall</div></div>
-    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1523800646749-3b0b5e7f64df?w=400&q=80" alt="Hanging bridges in rainforest canopy" loading="lazy"><div class="cap">Rainforest canopy walk</div></div>
-    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1545377446-446f9f5e0c3f?w=400&q=80" alt="White-faced monkey" loading="lazy"><div class="cap">Curious neighbor</div></div>
-    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=400&q=80" alt="Fruit market" loading="lazy"><div class="cap">Local market fruit</div></div>
-    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1600804340584-c7db2eacf164?w=400&q=80" alt="Costa Rica sunset" loading="lazy"><div class="cap">Jungle sunset</div></div>
-    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1565542670-9993f5a65f4d?w=400&q=80" alt="Coffee beans on tree" loading="lazy"><div class="cap">Arenal coffee harvest</div></div>
-    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=400&q=80" alt="Mangoes on tree" loading="lazy"><div class="cap">Mangoes at sunrise</div></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=400&q=80" alt="Arenal Volcano" loading="lazy"><div class="cap" data-en="Volc&aacute;n Arenal at dawn" data-es="Volc&aacute;n Arenal al amanecer">Volc&aacute;n Arenal at dawn</div></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1589556228980-dc4edf5d1dc2?w=400&q=80" alt="La Fortuna waterfall" loading="lazy"><div class="cap" data-en="La Fortuna Waterfall" data-es="Catarata La Fortuna">La Fortuna Waterfall</div></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1523800646749-3b0b5e7f64df?w=400&q=80" alt="Rainforest canopy" loading="lazy"><div class="cap" data-en="Rainforest canopy walk" data-es="Caminata en el dosel de la selva">Rainforest canopy walk</div></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1545377446-446f9f5e0c3f?w=400&q=80" alt="Monkey" loading="lazy"><div class="cap" data-en="Curious neighbor" data-es="Vecino curioso">Curious neighbor</div></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=400&q=80" alt="Fruit market" loading="lazy"><div class="cap" data-en="Local market fruit" data-es="Fruta del mercado local">Local market fruit</div></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1600804340584-c7db2eacf164?w=400&q=80" alt="Sunset" loading="lazy"><div class="cap" data-en="Jungle sunset" data-es="Atardecer en la selva">Jungle sunset</div></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1565542670-9993f5a65f4d?w=400&q=80" alt="Coffee beans" loading="lazy"><div class="cap" data-en="Arenal coffee harvest" data-es="Cosecha de caf&eacute; de Arenal">Arenal coffee harvest</div></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=400&q=80" alt="Mangoes" loading="lazy"><div class="cap" data-en="Mangoes at sunrise" data-es="Mangos al amanecer">Mangoes at sunrise</div></div>
   </div>
 </section>
 
@@ -531,22 +554,23 @@ footer {
 <section id="location">
   <div class="section-inner location-grid">
     <div class="location-content fade-in-left">
-      <div class="section-label">Visit Us</div>
-      <h2>Find Your <em>Jungle</em></h2>
-      <p>We're on the main road through La Fortuna, steps from the Central Park. Follow the sound of blenders and laughter.</p>
+      <div class="section-label" data-en="Visit Us" data-es="Vis&iacute;tanos">Visit Us</div>
+      <h2 data-en="Find Your <em>Jungle</em>" data-es="Encuentra Tu <em>Jungla</em>">Find Your <em>Jungle</em></h2>
+      <p class="lang-en">We're on the main road through La Fortuna, steps from the Central Park. Follow the sound of blenders and laughter.</p>
+      <p class="lang-es" style="display:none">Estamos en la carretera principal de La Fortuna, a pasos del Parque Central. Sigue el sonido de las licuadoras y las risas.</p>
       <div class="location-detail">
         <div class="icon">&#128205;</div>
-        <div class="text"><strong>Address</strong><span>Calle 2, contiguo al Parque Central<br>La Fortuna, San Carlos, Alajuela<br>Costa Rica</span></div>
+        <div class="text"><strong data-en="Address" data-es="Direcci&oacute;n">Address</strong><span class="lang-en">Calle 2, contiguo al Parque Central, La Fortuna, San Carlos, Alajuela, Costa Rica</span><span class="lang-es" style="display:none">Calle 2, contiguo al Parque Central, La Fortuna, San Carlos, Alajuela, Costa Rica</span></div>
       </div>
       <div class="location-detail">
         <div class="icon">&#128339;</div>
-        <div class="text"><strong>Hours</strong><span>Monday &ndash; Saturday: 6:30 AM &ndash; 6:00 PM<br>Sunday: 7:00 AM &ndash; 2:00 PM</span></div>
+        <div class="text"><strong data-en="Hours" data-es="Horario">Hours</strong><span class="lang-en">Mon &ndash; Sat: 6:30 AM &ndash; 6:00 PM &middot; Sun: 7:00 AM &ndash; 2:00 PM</span><span class="lang-es" style="display:none">Lun &ndash; S&aacute;b: 6:30 AM &ndash; 6:00 PM &middot; Dom: 7:00 AM &ndash; 2:00 PM</span></div>
       </div>
       <div class="location-detail">
         <div class="icon">&#128222;</div>
-        <div class="text"><strong>Contact</strong><span>+506 6150 0559 &middot; hello@junglejuice.cr</span></div>
+        <div class="text"><strong data-en="Contact" data-es="Contacto">Contact</strong><span>+506 6150 0559 &middot; hello@junglejuice.cr</span></div>
       </div>
-      <a href="https://maps.google.com/?q=La+Fortuna+Costa+Rica+Central+Park" target="_blank" class="btn btn-primary" style="margin-top:16px;">&#128205; Open in Maps</a>
+      <a href="https://maps.google.com/?q=La+Fortuna+Costa+Rica+Central+Park" target="_blank" class="btn btn-primary" style="margin-top:12px">&#128205; <span data-en="Open in Maps" data-es="Abrir en Maps">Open in Maps</span></a>
     </div>
     <div class="location-image fade-in-right"></div>
   </div>
@@ -557,24 +581,24 @@ footer {
   <div class="footer-grid">
     <div class="footer-brand">
       <div class="logo">Jungle <span>Juice</span></div>
-      <p>Hand-crafted smoothies from the heart of Costa Rica's rainforest. Every sip is a taste of the wild.</p>
+      <p data-en="Hand-crafted smoothies from the heart of Costa Rica's rainforest. Every sip is a taste of the wild." data-es="Smoothies artesanales desde el coraz&oacute;n de la selva de Costa Rica. Cada sorbo es un sabor de lo salvaje.">Hand-crafted smoothies from the heart of Costa Rica's rainforest. Every sip is a taste of the wild.</p>
     </div>
     <div class="footer-col">
-      <h4>Menu</h4>
+      <h4 data-en="Menu" data-es="Men&uacute;">Menu</h4>
       <ul>
-        <li><a href="#menu">Smoothies</a></li>
-        <li><a href="#menu">Bowls</a></li>
-        <li><a href="#menu">Coffee</a></li>
-        <li><a href="#menu">Protein</a></li>
+        <li><a href="#menu" data-en="Smoothies" data-es="Smoothies">Smoothies</a></li>
+        <li><a href="#menu" data-en="Bowls" data-es="Bowls">Bowls</a></li>
+        <li><a href="#menu" data-en="Coffee" data-es="Caf&eacute;">Coffee</a></li>
+        <li><a href="#menu" data-en="Protein" data-es="Prote&iacute;na">Protein</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Connect</h4>
+      <h4 data-en="Connect" data-es="Conectar">Connect</h4>
       <ul>
         <li><a href="#">Instagram</a></li>
         <li><a href="#">Facebook</a></li>
         <li><a href="#">WhatsApp</a></li>
-        <li><a href="https://maps.google.com/?q=La+Fortuna+Costa+Rica" target="_blank">Google Maps</a></li>
+        <li><a href="https://maps.google.com/?q=La+Fortuna+Costa+Rica" target="_blank" data-en="Google Maps" data-es="Google Maps">Google Maps</a></li>
       </ul>
     </div>
   </div>
@@ -589,66 +613,87 @@ footer {
 </footer>
 
 <script>
-// ── Nav scroll ──
-const nav = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 60);
-});
+// ── Language Toggle ──
+let currentLang = 'en';
 
-// ── Mobile menu ──
-const toggle = document.getElementById('menuToggle');
-const links = document.getElementById('navLinks');
-toggle.addEventListener('click', () => links.classList.toggle('open'));
-document.querySelectorAll('.nav-links a').forEach(a => {
-  a.addEventListener('click', () => links.classList.remove('open'));
-});
+function setLang(lang) {
+  currentLang = lang;
+  document.getElementById('langEn').classList.toggle('active', lang === 'en');
+  document.getElementById('langEs').classList.toggle('active', lang === 'es');
+  document.documentElement.lang = lang === 'en' ? 'en' : 'es';
 
-// ── Reveal animations ──
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
+  // Toggle lang-en / lang-es blocks
+  document.querySelectorAll('.lang-en').forEach(el => el.style.display = lang === 'en' ? '' : 'none');
+  document.querySelectorAll('.lang-es').forEach(el => el.style.display = lang === 'es' ? '' : 'none');
+
+  // data-en / data-es attributes
+  document.querySelectorAll('[data-en][data-es]').forEach(el => {
+    const text = el.getAttribute('data-' + lang);
+    if (text !== null) {
+      if (el.tagName === 'A' || el.tagName === 'BUTTON' || el.tagName === 'SPAN') {
+        el.innerHTML = text;
+      } else if (el.classList.contains('desc')) {
+        // menu descriptions handled by lang-en/lang-es classes
+      } else {
+        el.innerHTML = text;
+      }
     }
   });
-}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
+  // Special handling for elements with innerHTML (like h2 containing <em>)
+  document.querySelectorAll('h2[data-en][data-es], h3[data-en][data-es]').forEach(el => {
+    el.innerHTML = el.getAttribute('data-' + lang);
+  });
+}
+
+// ── Nav scroll ──
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), {passive:true});
+
+// ── Mobile menu ──
+const navLinks = document.getElementById('navLinks');
+document.getElementById('menuOpen').addEventListener('click', () => navLinks.classList.add('open'));
+document.getElementById('menuClose').addEventListener('click', () => navLinks.classList.remove('open'));
+document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+// ── Reveal animations ──
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .stagger').forEach(el => observer.observe(el));
 
 // ── Parallax hero ──
 window.addEventListener('scroll', () => {
-  const scrolled = window.scrollY;
-  const heroBg = document.querySelector('.hero-bg');
-  if (heroBg && scrolled < window.innerHeight) {
-    heroBg.style.transform = `scale(1.1) translateY(${scrolled * 0.15}px)`;
-  }
-});
+  const y = window.scrollY;
+  const bg = document.querySelector('.hero-bg');
+  if (bg && y < window.innerHeight) bg.style.transform = 'scale(1.15) translateY(' + (y * 0.12) + 'px)';
+}, {passive:true});
 
-// ── Intersection counter (stats) ──
+// ── Counter animation ──
 const statsEl = document.querySelector('.stats');
 if (statsEl) {
-  const countObserver = new IntersectionObserver((entries) => {
+  new IntersectionObserver((entries, obs) => {
     if (entries[0].isIntersecting) {
       document.querySelectorAll('.stat .num').forEach(el => {
-        const text = el.textContent;
-        if (text === '\u221e') return;
-        const target = parseInt(text);
+        const t = el.textContent;
+        if (t === '\u221e') return;
+        const target = parseInt(t);
         if (!isNaN(target)) {
-          el.textContent = '0';
-          const duration = 1500;
+          el.textContent = '0%';
           const start = performance.now();
-          const animate = (now) => {
-            const elapsed = now - start;
-            const progress = Math.min(elapsed / duration, 1);
-            el.textContent = Math.floor(progress * target) + '%';
-            if (progress < 1) requestAnimationFrame(animate);
+          const anim = (now) => {
+            const p = Math.min((now - start) / 1400, 1);
+            el.textContent = Math.floor(p * target) + '%';
+            if (p < 1) requestAnimationFrame(anim);
           };
-          requestAnimationFrame(animate);
+          requestAnimationFrame(anim);
         }
       });
-      countObserver.disconnect();
+      obs.disconnect();
     }
-  }, { threshold: 0.3 });
-  countObserver.observe(statsEl);
+  }, { threshold: 0.3 }).observe(statsEl);
 }
 
 console.log('%cJungle Juice', 'font-size:32px;font-family:Georgia;color:#ff6b35');
